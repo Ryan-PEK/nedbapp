@@ -1,0 +1,20 @@
+{
+  "name": "nedbapp",
+  "version": "1.0.0",
+  "description": "nedbapp",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nedb",
+    "rest"
+  ],
+  "author": "yunji",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.2",
+    "express-nedb-rest": "^1.2.4",
+    "nedb": "^1.8.0"
+  }
+}
