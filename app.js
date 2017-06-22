@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser')
 var nedb = require('nedb');
-var expressNedbRest = require('express-nedb-rest');
+var expressNedbRest = require('./rest/index');
 
 // setup express app
 var oApp = express();
