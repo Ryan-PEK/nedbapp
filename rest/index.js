@@ -339,7 +339,8 @@ function addRestMethods(router) {
 
     //--------------------------------------------------------------------------
     router.post('/:collection/:id', function (req, res, next) {
-        res.status(405).send(); // Method Not Allowed
+        res.redirect('/'+req.collection+"/"+req.id)
+        //res.status(405).send(); // Method Not Allowed
     });
 
 }
