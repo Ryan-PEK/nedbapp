@@ -339,7 +339,16 @@ function addRestMethods(router) {
 
     //--------------------------------------------------------------------------
     router.post('/:collection/:id', function (req, res, next) {
-        res.redirect('/'+req.collection+"/"+req.id)
+        req.nedb.findOne({ _id: req.id }, function (err, doc) {
+            if (err) {
+                return next(err);
+            }
+            if (!doc) {
+                return next({status:404, message:"document "+req.collection+" _id="+req.id+" not found"});
+            }
+            res.locals.json = doc;
+            next();
+        });
         //res.status(405).send(); // Method Not Allowed
     });
 
