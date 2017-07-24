@@ -20,11 +20,13 @@ oApp.use(bodyParser.urlencoded({ extended: false }))
 oApp.use(bodyParser.json())
 
 // create  NEDB datastore
-var datastore = new nedb({ filename: "db/mock.db",  autoload: true });
+var ds_mock = new nedb({ filename: "db/mock.db",  autoload: true });
+var ds_project = new nedb({ filename: "db/project.db",  autoload: true });
 
 // create rest api router and connect it to datastore  
 var restApi = expressNedbRest();
-restApi.addDatastore('mock', datastore);
+restApi.addDatastore('mock', ds_mock);
+restApi.addDatastore('project', ds_project);
 
 // setup express server to serve rest service
 oApp.use('/', restApi);
