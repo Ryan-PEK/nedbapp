@@ -261,20 +261,23 @@ function addRestMethods(router) {
 
     //--------------------------------------------------------------------------
     router.delete('/:collection/:id', function (req, res, next) {
-        req.nedb.remove({ _id: req.id}, { multi: false }, function (err, count) {
-            if (err) {
-                return next(err);
-            }
-            if (count != 1) {
-                return next({status:404, message:"document "+req.collection+" _id="+req.id+" not found"});
-            }
-            else {
-                res.locals.count = count;
-                res.status(204).send("deleted entries: "+count);
-            }
-        });
+        if(req.query && req.query.knowRisk ){
+            req.nedb.remove({ _id: req.id}, { multi: false }, function (err, count) {
+                if (err) {
+                    return next(err);
+                }
+                if (count != 1) {
+                    return next({status:404, message:"document "+req.collection+" _id="+req.id+" not found"});
+                }
+                else {
+                    res.locals.count = count;
+                    res.status(204).send("deleted entries: "+count);
+                }
+            });
+        }else{
+            res.status(405).send();
+        }
     });
-
 
     //--------------------------------------------------------------------------
     router.delete('/:collection', function (req, res, next) {
