@@ -20,17 +20,15 @@ oApp.use(bodyParser.urlencoded({ extended: false }))
 oApp.use(bodyParser.json())
 
 // create  NEDB datastore
-var ds_mock = new nedb({ filename: "db/mock.db",  autoload: true });
-var ds_project = new nedb({ filename: "db/project.db",  autoload: true });
-var ds_calendar = new nedb({ filename: "db/calendar.db",  autoload: true });
-var ds_user = new nedb({ filename: "db/user.db",  autoload: true });
+var ds_machine = new nedb({ filename: "db/machine.db",  autoload: true });
+var ds_service = new nedb({ filename: "db/service.db",  autoload: true });
+var ds_msmock = new nedb({ filename: "db/msmock.db",  autoload: true });
 
 // create rest api router and connect it to datastore  
 var restApi = expressNedbRest();
-restApi.addDatastore('mock', ds_mock);
-restApi.addDatastore('project', ds_project);
-restApi.addDatastore('calendar', ds_calendar);
-restApi.addDatastore('user', ds_user);
+restApi.addDatastore('machine', ds_machine);
+restApi.addDatastore('service', ds_service);
+restApi.addDatastore('msmock', ds_msmock);
 
 // setup express server to serve rest service
 oApp.use('/', restApi);
