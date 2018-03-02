@@ -24,6 +24,7 @@ var ds_mock = new nedb({ filename: "db/mock.db",  autoload: true });
 var ds_project = new nedb({ filename: "db/project.db",  autoload: true });
 var ds_calendar = new nedb({ filename: "db/calendar.db",  autoload: true });
 var ds_user = new nedb({ filename: "db/user.db",  autoload: true });
+var ds_testReady = new nedb({ filename: "db/testReady.db",  autoload: true });
 
 // create rest api router and connect it to datastore  
 var restApi = expressNedbRest();
@@ -31,6 +32,7 @@ restApi.addDatastore('mock', ds_mock);
 restApi.addDatastore('project', ds_project);
 restApi.addDatastore('calendar', ds_calendar);
 restApi.addDatastore('user', ds_user);
+restApi.addDatastore('testReady', ds_testReady);
 
 // setup express server to serve rest service
 oApp.use('/', restApi);
