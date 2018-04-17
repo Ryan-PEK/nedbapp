@@ -25,6 +25,7 @@ var ds_project = new nedb({ filename: "db/project.db",  autoload: true });
 var ds_calendar = new nedb({ filename: "db/calendar.db",  autoload: true });
 var ds_user = new nedb({ filename: "db/user.db",  autoload: true });
 var ds_testReady = new nedb({ filename: "db/testReady.db",  autoload: true });
+var ds_product = new nedb({ filename: "db/product.db",  autoload: true });
 
 // create rest api router and connect it to datastore  
 var restApi = expressNedbRest();
@@ -33,6 +34,7 @@ restApi.addDatastore('project', ds_project);
 restApi.addDatastore('calendar', ds_calendar);
 restApi.addDatastore('user', ds_user);
 restApi.addDatastore('testReady', ds_testReady);
+restApi.addDatastore('product', ds_product);
 
 // setup express server to serve rest service
 oApp.use('/', restApi);
